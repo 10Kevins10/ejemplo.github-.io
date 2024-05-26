@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMANA 05</title>
+    <link rel="stylesheet" href="estilo5.css">
+
+</head>
+
+<body>
+
+    <h3 class="titulo">Ejercicio 01: Manipular el HTML con un click</h3>
+    <p id="parrafo1">Texto 1</p>
+    <button type="button" onclick="modificandoDom()" class="btn success">Hacer Click!</button>
+    <script>
+        function modificandoDom() {
+            let parrafo1 = document.getElementById('parrafo1')
+            parrafo1.innerHTML = 'Cambiamos el DOM' + Date();
+        }
+    </script>
+
+    <h3 class="titulo">Ejercicio 02: Manipular el HTML con un AddEventListener</h3>
+    <form action="">
+        <label for="">Ingrese un texto:</label>
+        <input type="text" name="" id="idinput">
+        <p id="idparrafo">Texto2</p>
+    </form>
+    <script>
+        let txt = document.getElementById("idinput");
+        txt.addEventListener("keyup", cambiandoParrafo);
+        function cambiandoParrafo() {
+            let parrafo1 = document.getElementById("idparrafo")
+            parrafo1.innerHTML = txt.value;
+        }
+    </script>
+
+    <h3 class="titulo">Ejercicio 03: Obtener y manipular los datos del DOM</h3>
+    <form action="">
+        <label for="field1">X</label> <input id="num1" type="text" value="">
+        <label for="field2">X</label> <input id="num2" type="text" value="">
+        <button type="button" onclick="calculateSum()" class="btn danger">Sumar</button>
+        <p id="sumando">Result: </p>
+    </form>
+    <script>
+        function calculateSum() {
+            let x, y, suma, text;
+            x = document.getElementById("num1").value;
+            y = document.getElementById("num2").value;
+            if (isNaN(x) || isNaN(y)) {
+                text = "Es necesario introducir dos números válidos";
+            } else {
+                // parseFlot para no concatenar x e y
+                suma = parseFloat(x) + parseFloat(y);
+                text = suma;
+            }
+            document.getElementById("sumando").innerHTML = "Result: " + text;
+        }
+    </script>
+
+
+    <h3 class="titulo">Ejercicio 04: Crear un array con 10 objetos y manipular los datos del DOM para mostrar los datos
+        del array</h3>
+    <table id="tablaEstudiantes">
+        <tr>
+            <th>ID</th>
+            <th>Apellidos</th>
+            <th>Nombres</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+        </tr>
+    </table>
+
+    <script>
+        var estudiantes = [
+            { id: 1, apellidos: 'Perez', nombres: 'Juan', direccion: 'Calle 17833', telefono: '1234567890' },
+            { id: 2, apellidos: 'Gomez', nombres: 'Maria', direccion: 'Calle 2479', telefono: '09876543265' },
+            { id: 3, apellidos: 'Bolañoz', nombres: 'Marta', direccion: 'Calle 2178', telefono: '09845543265' },
+            { id: 4, apellidos: 'Suarez', nombres: 'Saul', direccion: 'Calle 2134', telefono: '42876543245' },
+            { id: 5, apellidos: 'Messi', nombres: 'Jose', direccion: 'Calle 225', telefono: '77876543256' },
+            { id: 6, apellidos: 'Nazario', nombres: 'Juan', direccion: 'Calle 257', telefono: '5587654348' },
+            { id: 7, apellidos: 'Figueroa', nombres: 'Kevin', direccion: 'Calle 2921', telefono: '4887654348' },
+            { id: 8, apellidos: 'Santana', nombres: 'Mario', direccion: 'Calle 2378', telefono: '6487654349' },
+            { id: 9, apellidos: 'Alcantara', nombres: 'Carlos', direccion: 'Calle 2784', telefono: '5487654348' },
+            { id: 10, apellidos: 'Aliaga', nombres: 'Rosi', direccion: 'Calle 2435', telefono: '1687654378' },
+
+        ];
+
+        var tabla = document.getElementById('tablaEstudiantes');
+
+        for (var i = 0; i < estudiantes.length; i++) {
+            var fila = tabla.insertRow(-1);
+            var celda1 = fila.insertCell(0);
+            var celda2 = fila.insertCell(1);
+            var celda3 = fila.insertCell(2);
+            var celda4 = fila.insertCell(3);
+            var celda5 = fila.insertCell(4);
+
+            celda1.innerHTML = estudiantes[i].id;
+            celda2.innerHTML = estudiantes[i].apellidos;
+            celda3.innerHTML = estudiantes[i].nombres;
+            celda4.innerHTML = estudiantes[i].direccion;
+            celda5.innerHTML = estudiantes[i].telefono;
+        }
+    </script>
+
+
+</body>
+
+</html>
